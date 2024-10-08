@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { EyeIcon } from "lucide-react";
 import prisma from "@/lib/db";
 import CopyButton from "@/components/CopyButton";
+import LinkButton from "./LinkButton";
 
 interface UrlTypes {
   id: string;
@@ -18,7 +18,8 @@ const UrlList = async () => {
     },
   });
 
-  const shortenerUrl = (code:string) => `${process.env.NEXT_PUBLIC_BASE_URL}/${code}`
+  const shortenerUrl = (code: string) =>
+    `${process.env.NEXT_PUBLIC_BASE_URL}/${code}`;
 
   return (
     <div>
@@ -28,17 +29,11 @@ const UrlList = async () => {
         {urls.map((url) => (
           <li
             key={url.id}
-            className="flex items-center justify-between gap-2 border-dashed border-gray-500 p-2"
+            className="flex items-center justify-between gap-2 p-2 bg-card rounded-md text-card-foreground border"
           >
-            <Link
-              href={`/${url.shortCode}`}
-              target="_blank"
-              className="text-blue-500 underline"
-            >
-              {shortenerUrl(url.shortCode)}
-            </Link>
+            <LinkButton url={shortenerUrl(url.shortCode)} />
             <div className="flex items-center gap-3">
-              <CopyButton url={url.originalUrl} />
+              <CopyButton url={shortenerUrl(url.shortCode)} />
               <span className="flex items-center gap-1">
                 <EyeIcon className="w-4 h-4" />
                 {url.visits} views

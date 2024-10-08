@@ -5,17 +5,16 @@ import { Button } from "@/components/ui/button";
 import { CircleCheckBig, CopyIcon } from "lucide-react";
 
 export default function CopyButton({ url }: { url: string }) {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = () => {
     const textToCopy = url;
 
-    // Copying text to clipboard
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => {
-        setCopied(true); // Indicate the text has been copied
-        setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); 
       })
       .catch((err) => {
         console.error("Failed to copy text: ", err);
