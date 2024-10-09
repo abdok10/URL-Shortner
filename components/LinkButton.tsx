@@ -9,8 +9,8 @@ interface linkButtonProps {
 const LinkButton = ({ url }: linkButtonProps) => {
   const handleClick = () => {
     setTimeout(() => {
-      window.location.reload(); // This will reload the current page after the link is clicked.
-    }, 1000); // Add a delay to ensure the new tab opens before reloading.
+      window.location.reload();
+    }, 2000); 
 
     return true; // Allow the link navigation to proceed.
   };
