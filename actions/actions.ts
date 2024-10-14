@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/db";
 import { nanoid } from "nanoid";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function shortenUrl(formData: FormData) {
@@ -16,6 +17,8 @@ export async function shortenUrl(formData: FormData) {
     })
     console.log(url);
     console.log("server");
+    revalidatePath("/");
+
 
     return redirect('/') ;
 }
